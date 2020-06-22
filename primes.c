@@ -64,9 +64,9 @@ struct prime *primes(long n)
 
         long sq = (long) sqrt(bound) + 1;
         for (long p = 3; p < sq; p += 2) {
-                if (ba_get(nums, p) == 1) {
+                if (ba_get_bit(nums, p) == 1) {
                         for (long k = 2; k * p < bound; k++) {
-                                if (ba_get(nums, k * p) == 1) {
+                                if (ba_get_bit(nums, k * p) == 1) {
                                         ba_clear_bit(nums, k * p);
                                         count--;
                                 }
@@ -94,7 +94,7 @@ void write_to_file(struct prime *pr)
         long i = 2;
 
         while (i < pr->count && p < pr->bound) {
-                if (ba_get(pr->nums, p) == 1) {
+                if (ba_get_bit(pr->nums, p) == 1) {
                         sprintf(buf, "%ld %ld\n", i, p);
                         fwrite(buf, strlen(buf), 1, file);
                         i++;
